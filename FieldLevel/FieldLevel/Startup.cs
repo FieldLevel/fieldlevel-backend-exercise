@@ -1,3 +1,5 @@
+using FieldLevel.Repositories;
+using FieldLevel.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,6 +29,9 @@ namespace FieldLevel {
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "FieldLevel", Version = "v1" });
             });
+            services.AddHttpClient("postsApiEndpoint", c => c.BaseAddress = new Uri(Configuration["apiEndpoint"]));
+            services.AddSingleton<IUserPostRepository, UserPostRepository>();
+            services.AddSingleton<IUserPostService, UserPostService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +50,7 @@ namespace FieldLevel {
 
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
+                endpoints.MapControllerRoute("default", "{controller=UserPost}/{action=Get}");
             });
         }
     }
