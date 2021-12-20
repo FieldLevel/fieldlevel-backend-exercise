@@ -30,6 +30,8 @@ namespace FieldLevel {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "FieldLevel", Version = "v1" });
             });
             services.AddHttpClient("postsApiEndpoint", c => c.BaseAddress = new Uri(Configuration["apiEndpoint"]));
+            services.AddMemoryCache();
+            services.AddSingleton<ICacheService, InMemoryCacheService>();
             services.AddSingleton<IUserPostRepository, UserPostRepository>();
             services.AddSingleton<IUserPostService, UserPostService>();
         }
