@@ -11,7 +11,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace FieldLevel {
@@ -27,7 +29,8 @@ namespace FieldLevel {
 
             services.AddControllers();
             services.AddSwaggerGen(c => {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "FieldLevel", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "FieldLevel", Version = "v1", Description = "An api to receive users and their posts" });
+                c.IncludeXmlComments(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"));
             });
             services.AddHttpClient("postsApiEndpoint", c => c.BaseAddress = new Uri(Configuration["apiEndpoint"]));
             services.AddMemoryCache();
