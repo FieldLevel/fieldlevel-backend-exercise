@@ -5,7 +5,7 @@ This project is about exposing a single web api endpoint that returns the most r
 ## Requirements
 - You can choose ASP.NET or .NET Core, please let us know if you choose .NET core so we can change the environment on azure so auto deploys will work as you push code to the master branch.
 
-- Call your project Fieldlevel so that end up with a FieldLevel.csproj
+- Call your solution FieldlevelExercise
 - The data set is located here https://jsonplaceholder.typicode.com/posts
 - Results should display the most recent post authored by each user. Use post.id to determine recency.
 - Regardless of the frequency at which your endpoint is requested across multi devices, the third party data set should not be requested more than once per minute.
@@ -26,13 +26,6 @@ This project is about exposing a single web api endpoint that returns the most r
 # How To Run
 
 {Provide any details FieldLevel should know to get this running}
-
-# Deployment
-This will be auto deployed to an azure site
-https://{git-repo}.azurewebsites.net
-
-Customizing
-https://github.com/projectkudu/kudu/wiki/Customizing-deployments
 
 # FAQ
 
